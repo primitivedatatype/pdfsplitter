@@ -6,3 +6,5 @@
 
 `python splitpdf.py`
 
+## Install Dependencies
+`pip install PyPDF2`
