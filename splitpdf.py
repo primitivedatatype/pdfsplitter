@@ -4,8 +4,13 @@ import sys
 
 # Much of this code originated from an answer provided at:
 # https://stackoverflow.com/questions/490195/split-a-multi-page-pdf-file-into-multiple-pdf-files-with-python
-def split(file_path):
-	base_name = os.path.basename(file_path).split('.pdf')[0]
+def split(file_path, name=None):
+	if name == None:
+		base_name = os.path.basename(file_path).split('.pdf')[0]
+	else:
+		base_name = os.path.basename(name).split('.pdf')[0]
+
+	print "base: {}".format(base_name)
 	inputpdf = PdfFileReader(open(file_path, "rb"))
 	names = []
 	cur_dir = os.getcwd()
