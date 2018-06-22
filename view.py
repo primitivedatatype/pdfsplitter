@@ -23,9 +23,21 @@ def get_users_file():
 	    	f.write(data)
 	return file.name
 
+def remove_tmp_file():
+	'''
+		Cleans up tmp file
+	'''
+	if os.path.exists(TMP_PATH):
+		answer = raw_input("Remove temp file {} (y/n)?".format(TMP_PATH))
+		if answer.lower() == 'y' or answer.lower() == 'yes': 
+			os.remove(TMP_PATH)
+		else:
+			print ("ok, we won't remove it.")
 
 
 if __name__ == "__main__":
 	original_name = get_users_file()
 
 	splitpdf.split(TMP_PATH, name=original_name)
+
+	remove_tmp_file()
