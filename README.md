@@ -1,6 +1,6 @@
 # pdfsplitter
-## Separates a multi-page pdf into 1-page pdfs in a folder labeled `pages`
-## Combines several pdf files into one labeled `combined.pdf`
+`Separates a multi-page pdf into 1-page pdfs in a folder labeled *pages*
+Combines several pdf files into one labeled *combined.pdf*`
 
 ## Run with either of:
 `python view.py`
