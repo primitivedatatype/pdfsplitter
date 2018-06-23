@@ -10,8 +10,8 @@
 `pip install PyPDF2`
 
 ## Notes:
-`Combining files needs to be tested on Windows. See link:
-[Stackoverflow post on Tkinter askopenfiles bug](https://stackoverflow.com/questions/4116249/parsing-the-results-of-askopenfilenames)`
+`Combining files needs to be tested on Windows. See link:`
+[Stackoverflow post on Tkinter askopenfiles bug](https://stackoverflow.com/questions/4116249/parsing-the-results-of-askopenfilenames)
 
 ## Future Plans:
 * Verify the order of files to combine
