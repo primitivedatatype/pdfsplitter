@@ -1,9 +1,9 @@
 # pdfsplitter
-`Separates a multi-page pdf into 1-page pdfs in a folder labeled **pages**`
-`Combines several pdf files into one labeled **combined.pdf** `
+Separates a multi-page pdf into 1-page pdfs in a folder labeled `__pages__`
+Combines several pdf files into one labeled `__combined.pdf__`
 
 ## Run with either of:
-`python view.py`
+`python view.py``
 
 ## Just split pdfs and avoid the GUI:
 `python splitpdf.py <file.pdf>`
