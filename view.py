@@ -1,12 +1,14 @@
 import Tkinter, tkFileDialog
 import tkMessageBox
-
+from functools import partial
 import os, sys
 import splitpdf
-
+# from DragDropListBox import * 
+import DragDropListBox as dbox
 FILESIZE_THRESHOLD = 5000000
 WIDTH_PIXELS = 200
 HEIGHT_PIXELS = 100
+
 # Credit: https://code.activestate.com/recipes/438123-file-tkinter-dialogs/
 def get_users_file():
     '''
@@ -76,15 +78,45 @@ def get_users_files():
     file_paths = tkFileDialog.askopenfilenames()
     return file_paths
 
+def combine_ordered_files(root, listbox, num_files, name="combined.pdf"):
+    # extract the order specified by user
+    ordered_paths=[]
+    for i in range(num_files):
+    	ordered_paths.append(listbox.get(0))
+    	listbox.delete(0)
+
+    print ("\norder")
+    for p in ordered_paths:
+    	print p
+    splitpdf.combine_files(ordered_paths, name=name)
+    listbox.destroy()
+    root.destroy()
+    print ("done!!")
+
 def start_combine():
     '''
         Collects multiple filenames from user through dialog box
         Calls combine function
     '''
     file_paths = get_users_files()
-    if len(file_paths) > 0:
-        splitpdf.combine_files(file_paths, name="combined.pdf")
-        print ("done!!")
+    num_files = len(file_paths)
+    if num_files > 0:
+  		# add items to list box
+        listbox = dbox.DragDropListbox(root)
+        for i, path in enumerate(file_paths):
+            listbox.insert(Tkinter.END, path)
+            listbox.selection_set(i)
+
+        listbox.pack(fill=Tkinter.BOTH, expand=True)
+        height = min(dbox.LIST_BOX_HEIGHT + 20*num_files, \
+        	dbox.MAX_LISTBOX_HEIGHT)
+        listbox.setSize(dbox.LIST_BOX_WIDTH, height)
+
+        combine_based_on_listbox = partial(\
+        	combine_ordered_files, root, listbox, num_files)
+        b = Tkinter.Button(root, text="Go", command=combine_based_on_listbox)
+        b.place(relx=0.85, rely=0.2) 
+
     else:
         print ("no files were selected...")
 
@@ -108,7 +140,6 @@ if __name__ == "__main__":
     texts = ["Split Pdfs", "Combine Pdfs"]
     funcs = [start_split, start_combine]
     assert len(texts) == len(funcs)
-
     root = Tkinter.Tk()
     root.geometry('{}x{}'.format(WIDTH_PIXELS, HEIGHT_PIXELS))
     root.title(title)
