@@ -1,7 +1,7 @@
 # pdf splitter
-Separate a multi-page pdf into 1-page pdfs in a folder labeled `__pages__`
+Separate a multi-page pdf into 1-page pdfs in a folder labeled __pages__
 
-Combine several pdf files into one labeled `__combined.pdf__`
+Combine several pdf files into one labeled __combined.pdf__
 
 ## Run with:
 `python view.py`
@@ -19,7 +19,4 @@ Combining files needs to be tested on Windows. See link:
 [Stackoverflow post on Tkinter askopenfiles bug](https://stackoverflow.com/questions/4116249/parsing-the-results-of-askopenfilenames)
 
 ## Future Plans:
-* Place combined/split file(s) into same directory
-	ask original file(s)
-* Let user specify the name of the combined file
-
+Currently messages that tell the user what is going on are only displayed in the commandline. It would be helpful to add these to the UI.

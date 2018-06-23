@@ -54,13 +54,26 @@ def ask_remove_tmp_file(msg=None):
     if ans: #user replied 'yes'
         remove_tmp_file()
 
+def get_save_as_directory(original_path):
+    '''
+        Prompt user to choose where to save split pdf files
+    '''
+    dir_name = tkFileDialog.askdirectory()
+    if dir_name == None:
+        dir_name = os.path.dirname(original_path)
+
+    print ("Will save into {}".format(dir_name))
+    return dir_name
+
 def start_split():
     '''
         Begin Splitting Functionality
     '''
-    original_name, size = get_users_file()
-    if original_name != None and size != None:
-        splitpdf.split(name=original_name)
+    original_path, size = get_users_file()
+    if original_path != None and size != None:
+        save_as_dir = get_save_as_directory(original_path)
+        splitpdf.split(name=original_path, dir_name=save_as_dir)
+
         if size > FILESIZE_THRESHOLD:
             ask_remove_tmp_file(msg="Size: {} bytes".format(size))
     else:
@@ -78,17 +91,33 @@ def get_users_files():
     file_paths = tkFileDialog.askopenfilenames()
     return file_paths
 
-def combine_ordered_files(root, listbox, num_files, name="combined.pdf"):
+def get_save_as_name(): #initial_dir):
+    '''
+        Prompt user to choose where to save the combined pdf file
+    '''
+    file_name = tkFileDialog.asksaveasfilename()
+    if file_name != None:
+        return file_name
+        
+    else:
+        file_name = "combined.pdf"
+        print ("will save as default: {}".format(file_name))
+        return file_name
+
+def combine_ordered_files(root, listbox, num_files):
     # extract the order specified by user
     ordered_paths=[]
     for i in range(num_files):
-    	ordered_paths.append(listbox.get(0))
-    	listbox.delete(0)
+        ordered_paths.append(listbox.get(0))
+        listbox.delete(0)
 
     print ("\norder")
     for p in ordered_paths:
-    	print p
+        print p
+
+    name = get_save_as_name()#os.path.dirname(ordered_paths[0]))
     splitpdf.combine_files(ordered_paths, name=name)
+
     listbox.destroy()
     root.destroy()
     print ("done!!")
@@ -101,7 +130,7 @@ def start_combine():
     file_paths = get_users_files()
     num_files = len(file_paths)
     if num_files > 0:
-  		# add items to list box
+        # add items to list box
         listbox = dbox.DragDropListbox(root)
         for i, path in enumerate(file_paths):
             listbox.insert(Tkinter.END, path)
@@ -109,11 +138,11 @@ def start_combine():
 
         listbox.pack(fill=Tkinter.BOTH, expand=True)
         height = min(dbox.LIST_BOX_HEIGHT + 20*num_files, \
-        	dbox.MAX_LISTBOX_HEIGHT)
+            dbox.MAX_LISTBOX_HEIGHT)
         listbox.setSize(dbox.LIST_BOX_WIDTH, height)
 
         combine_based_on_listbox = partial(\
-        	combine_ordered_files, root, listbox, num_files)
+            combine_ordered_files, root, listbox, num_files)
         b = Tkinter.Button(root, text="Go", command=combine_based_on_listbox)
         b.place(relx=0.85, rely=0.2) 
 
