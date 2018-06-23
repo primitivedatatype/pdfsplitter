@@ -19,7 +19,6 @@ Combining files needs to be tested on Windows. See link:
 [Stackoverflow post on Tkinter askopenfiles bug](https://stackoverflow.com/questions/4116249/parsing-the-results-of-askopenfilenames)
 
 ## Future Plans:
-* Verify the order of files before combining
 * Place combined/split file(s) into same directory
 	ask original file(s)
 * Let user specify the name of the combined file
