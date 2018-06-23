@@ -1,11 +1,12 @@
-# pdfsplitter
-Separates a multi-page pdf into 1-page pdfs in a folder labeled `__pages__`
-Combines several pdf files into one labeled `__combined.pdf__`
+# pdf splitter
+Separate a multi-page pdf into 1-page pdfs in a folder labeled `__pages__`
 
-## Run with either of:
-`python view.py``
+Combine several pdf files into one labeled `__combined.pdf__`
 
-## Just split pdfs and avoid the GUI:
+## Run with:
+`python view.py`
+
+## Or split pdfs and avoid the GUI:
 `python splitpdf.py <file.pdf>`
 
 `python splitpdf.py`
@@ -14,7 +15,7 @@ Combines several pdf files into one labeled `__combined.pdf__`
 `pip install PyPDF2`
 
 ## Notes:
-`Combining files needs to be tested on Windows. See link:`
+Combining files needs to be tested on Windows. See link:
 [Stackoverflow post on Tkinter askopenfiles bug](https://stackoverflow.com/questions/4116249/parsing-the-results-of-askopenfilenames)
 
 ## Future Plans:
