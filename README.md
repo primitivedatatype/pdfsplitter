@@ -1,7 +1,7 @@
 # pdf splitter
-Separate a multi-page pdf into 1-page pdfs in a folder labeled __pages__
+Separate a multi-page pdf into 1-page pdfs.
 
-Combine several pdf files into one labeled __combined.pdf__
+Combine several pdf files into one pdf.
 
 ## Run with:
 `python view.py`
