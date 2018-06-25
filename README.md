@@ -6,17 +6,14 @@ Combine several pdf files into one pdf.
 ## Run with:
 `python view.py`
 
-## Or split pdfs and avoid the GUI:
-`python splitpdf.py <file.pdf>`
-
-`python splitpdf.py`
-
 ## Install Dependencies
 `pip install PyPDF2`
 
-## Notes:
-Combining files needs to be tested on Windows. See link:
-[Stackoverflow post on Tkinter askopenfiles bug](https://stackoverflow.com/questions/4116249/parsing-the-results-of-askopenfilenames)
+## Needed to make the executable:
+`pip install pyinstaller` 
 
 ## Future Plans:
-Currently messages that tell the user what is going on are only displayed in the commandline. It would be helpful to add these to the UI.
+* Currently messages that tell the user what is going on are only displayed in the commandline. It would be helpful to add these to the UI.
+* Add a button on the listbox dialog to allow user to select additional files to combine. 
+* Create a visual cue to remind the user whether in combine or split mode.
+* Have a default filename/path shown in the dialog box in case the user forgets to write it in the 'save as' box.
