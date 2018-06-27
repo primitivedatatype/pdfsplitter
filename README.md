@@ -3,10 +3,12 @@ Separate a multi-page pdf into 1-page pdfs.
 
 Combine several pdf files into one pdf.
 
+Written in Python 2.7.
+
 ## Run with:
 `python view.py`
 
-## Install Dependencies
+## Install Dependencies:
 `pip install PyPDF2`
 
 ## Needed to make the executable:
