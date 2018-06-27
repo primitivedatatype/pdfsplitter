@@ -36,7 +36,7 @@ def remove_tmp_file(ask=False):
     '''
     if os.path.exists(splitpdf.TMP_PATH):
         if ask == True:
-            answer = raw_input("Remove temp file {} (y/n)?".format(TMP_PATH))
+            answer = raw_input("Remove temp file {} (y/n)?".format(splitpdf.TMP_PATH))
             if answer.lower() == 'y' or answer.lower() == 'yes': 
                 os.remove(splitpdf.TMP_PATH)
             else:
@@ -46,7 +46,7 @@ def remove_tmp_file(ask=False):
 
 def ask_remove_tmp_file(msg=None):
     title = "\"Wait! Don't go!\""
-    question = "Remove temp file {}?".format(TMP_PATH)
+    question = "Remove temp file {}?".format(splitpdf.TMP_PATH)
     if msg != None:
         question += "\n"+msg
     ans = tkMessageBox.askyesno(title, question, parent=root)
