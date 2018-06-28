@@ -15,7 +15,7 @@ Written in Python 2.7.
 `pip install pyinstaller` 
 
 ## Future Plans:
-* Currently messages that tell the user what is going on are only displayed in the commandline. It would be helpful to add these to the UI.
 * Add a button on the listbox dialog to allow user to select additional files to combine. 
 * Create a visual cue to remind the user whether in combine or split mode.
 * Have a default filename/path shown in the dialog box in case the user forgets to write it in the 'save as' box.
+* The executable in the dist folder bugs out on the combine function, even though it works when running with `python view.py`.

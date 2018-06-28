@@ -49,21 +49,3 @@ def combine_files(file_paths, name=None):
 			output.write(outputStream)
 		print ("\tCombining {} into {}".format(\
 			os.path.basename(file_paths[i]), name))
-
-# def main():
-# 	argv = sys.argv[1:]
-# 	if len(argv) == 0:
-# 		file_path = raw_input("Enter path of pdf to split: ")
-# 	else:
-# 		file_path = argv[0]
-
-# 	if not os.path.exists(file_path):
-# 		print "File not found: {}".format(file_path)
-# 		print "Run as\n\tpython splitpdf.py <file_to_pdf>"
-# 		sys.exit(-1)
-
-# 	split(file_path=file_path)
-
-# if __name__ == "__main__":
-# 	main()
-	

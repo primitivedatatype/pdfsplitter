@@ -9,13 +9,9 @@ FILESIZE_THRESHOLD = 5000000
 WIDTH_PIXELS = 600
 HEIGHT_PIXELS = 100
 
-def display_msg(root, msg):#, first=False):
-    # if first:
-        #, borderwidth=2, relief="groove")
-        # l1.place(x=0, y=0)
+def display_msg(root, msg):
     var.set(msg)
     l1.place(x=0, y=0)
-
     # root.update_idletasks()
 
 # Credit: https://code.activestate.com/recipes/438123-file-tkinter-dialogs/
@@ -132,10 +128,10 @@ def combine_ordered_files(root, listbox, num_files):
 
     name = get_save_as_name()#os.path.dirname(ordered_paths[0]))
     splitpdf.combine_files(ordered_paths, name=name)
+
     display_msg(root, "done!!!")
     listbox.destroy()
     root.destroy()
-    
 
 def start_combine():
     '''
