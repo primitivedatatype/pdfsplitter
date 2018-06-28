@@ -6,8 +6,17 @@ import splitpdf
 # from DragDropListBox import * 
 import DragDropListBox as dbox
 FILESIZE_THRESHOLD = 5000000
-WIDTH_PIXELS = 200
+WIDTH_PIXELS = 600
 HEIGHT_PIXELS = 100
+
+def display_msg(root, msg):#, first=False):
+    # if first:
+        #, borderwidth=2, relief="groove")
+        # l1.place(x=0, y=0)
+    var.set(msg)
+    l1.place(x=0, y=0)
+
+    # root.update_idletasks()
 
 # Credit: https://code.activestate.com/recipes/438123-file-tkinter-dialogs/
 def get_users_file():
@@ -17,7 +26,7 @@ def get_users_file():
     '''
     file = tkFileDialog.askopenfile(parent=root,mode='rb',title='Choose a file')
     if file != None:
-        print ("file: ", file.name)
+        display_msg(root, "file: {}".format(file.name))
         data = file.read()
         file.close()
         size = len(data)
@@ -58,11 +67,14 @@ def get_save_as_directory(original_path):
     '''
         Prompt user to choose where to save split pdf files
     '''
+    display_msg(root,\
+        "You chose: {}....Now choose destination folder for final pdfs.".format(\
+            os.path.basename(original_path)))
     dir_name = tkFileDialog.askdirectory()
     if dir_name == None:
         dir_name = os.path.dirname(original_path)
 
-    print ("Will save into {}".format(dir_name))
+    display_msg(root, "Destination folder: {}".format(dir_name))
     return dir_name
 
 def start_split():
@@ -77,7 +89,9 @@ def start_split():
         if size > FILESIZE_THRESHOLD:
             ask_remove_tmp_file(msg="Size: {} bytes".format(size))
     else:
-        print ("no file selected...")
+        # print ("no file selected...")
+         display_msg(root, "no file was selected...")
+
 
 def get_users_files():
     '''
@@ -88,6 +102,7 @@ def get_users_files():
             4116249/parsing-the-results-of-askopenfilenames 
         ...will need to test this on windows
     '''
+    display_msg(root, "Choose pdf files...")
     file_paths = tkFileDialog.askopenfilenames()
     return file_paths
 
@@ -95,14 +110,15 @@ def get_save_as_name(): #initial_dir):
     '''
         Prompt user to choose where to save the combined pdf file
     '''
+    display_msg(root, "Save as...?")
     file_name = tkFileDialog.asksaveasfilename()
     if file_name != None:
         return file_name
-        
     else:
         file_name = "combined.pdf"
-        print ("will save as default: {}".format(file_name))
-        return file_name
+
+    display_msg(root, "Saving as: {}".format(file_name))
+    return file_name
 
 def combine_ordered_files(root, listbox, num_files):
     # extract the order specified by user
@@ -111,16 +127,15 @@ def combine_ordered_files(root, listbox, num_files):
         ordered_paths.append(listbox.get(0))
         listbox.delete(0)
 
-    print ("\norder")
     for p in ordered_paths:
         print p
 
     name = get_save_as_name()#os.path.dirname(ordered_paths[0]))
     splitpdf.combine_files(ordered_paths, name=name)
-
+    display_msg(root, "done!!!")
     listbox.destroy()
     root.destroy()
-    print ("done!!")
+    
 
 def start_combine():
     '''
@@ -147,7 +162,8 @@ def start_combine():
         b.place(relx=0.85, rely=0.2) 
 
     else:
-        print ("no files were selected...")
+        # print ("no files were selected...")
+         display_msg(root, "no files were selected...")
 
 def choose_option(title, texts, functions):
     '''
@@ -169,8 +185,17 @@ if __name__ == "__main__":
     texts = ["Split Pdfs", "Combine Pdfs"]
     funcs = [start_split, start_combine]
     assert len(texts) == len(funcs)
+
     root = Tkinter.Tk()
+
+    var = Tkinter.StringVar()
+    l1 = Tkinter.Label(root, textvariable=var)
+
+    display_msg(root, 'hello')
+
     root.geometry('{}x{}'.format(WIDTH_PIXELS, HEIGHT_PIXELS))
     root.title(title)
     choose_option(title, texts, funcs)
     root.mainloop()
+
+
